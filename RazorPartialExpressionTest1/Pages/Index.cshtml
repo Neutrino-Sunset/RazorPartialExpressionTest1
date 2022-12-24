@@ -1,0 +1,44 @@
+﻿@page
+@model IndexModel
+@{
+   ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+   <h1 class="display-4">Welcome</h1>
+   <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<form method="post">
+
+    <!-- Standard way to define form controls can result in loads of code duplication. -->
+
+@*   <div class="form-group">
+      <label asp-for="Movie.Title" class="control-label"></label>
+      <input asp-for="Movie.Title" class="form-control" />
+      <span asp-validation-for="Movie.Title" class="text-danger"></span>
+   </div>*@
+
+   <!-- Let's use a partial to attempt to remedy that. -->
+
+   <!-- This works, but since the property name used is hardcoded in the partial it isn't remotely useful. -->
+   <partial name="_FormGroupPartial1" for="Movie" />
+
+   <!-- This would be useful, but doesn't work, and there's no obvious way to get it or any equivalent 
+        alternative to work -->
+   @*<partial name="_FormGroupPartial2" for="Movie.Title" />*@
+
+   <div class="form-group">
+      <label asp-for="Movie.ReleaseDate" class="control-label"></label>
+      <input asp-for="Movie.ReleaseDate" class="form-control" />
+      <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+      <label asp-for="Movie.Genre" class="control-label"></label>
+      <input asp-for="Movie.Genre" class="form-control" />
+      <span asp-validation-for="Movie.Genre" class="text-danger"></span>
+   </div>
+   <div>
+      <input type="submit" value="Submit" />
+   </div>
+</form>
